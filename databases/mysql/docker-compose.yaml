@@ -1,0 +1,26 @@
+version: '3.3'
+services:
+  db:
+    image: mysql
+    restart: always
+    environment:
+      MYSQL_DATABASE: 'db'
+      # So you don't have to use root, but you can if you like
+      MYSQL_USER: 'db'
+      # You can use whatever password you like
+      MYSQL_PASSWORD: 'test@test'
+      # Password for root access
+      MYSQL_ROOT_PASSWORD: 'test@test'
+    ports:
+      # <Port exposed> : <MySQL Port running inside container>
+      - '3306:3306'
+    expose:
+      - '3306'
+    volumes:
+      - my-db:/var/lib/mysql
+# Names our volume
+volumes:
+  my-db:
+
+
+# Make Table with Name  users and columns: firsname, lastname, email, ticktnumber
