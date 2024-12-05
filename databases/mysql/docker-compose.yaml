@@ -17,10 +17,10 @@ services:
     expose:
       - '3306'
     volumes:
-      - my-db:/var/lib/mysql
+      - /opt/container-volumes.dir/mysql.dir:/var/lib/mysql
 # Names our volume
-volumes:
-  my-db:
+# volumes:
+#   my-db:
 
 
 # Make Table with Name  users and columns: firsname, lastname, email, ticktnumber
