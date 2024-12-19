@@ -1,0 +1,43 @@
+version: "3.3"
+
+services:    
+  keycloak:
+    image: quay.io/keycloak/keycloak:latest
+    container_name: "keycloak"
+    network_mode: bridge
+    ports:
+      - 8090:8090/tcp
+    command:  ["start-dev", "--http-port=8090"]
+    expose:
+      - "8090"
+    environment:
+      - KEYCLOAK_ADMIN=root
+      - KC_BOOTSTRAP_ADMIN_PASSWORD=test@test
+      # - KC_HOSTNAME=http://localhost:8080
+      - KC_DB=mysql
+      - KC_DB_URL=jdbc:mysql://192.168.1.100:3306/keycloak
+      - KC_DB_USERNAME=root
+      - KC_DB_PASSWORD=test@test
+
+
+
+# version: '3.3'
+# services:
+#   db:
+#     image: mysql
+#     restart: always
+#     environment:
+#       MYSQL_DATABASE: 'db'
+#       # So you don't have to use root, but you can if you like
+#       MYSQL_USER: 'db'
+#       # You can use whatever password you like
+#       MYSQL_PASSWORD: 'test@test'
+#       # Password for root access
+#       MYSQL_ROOT_PASSWORD: 'test@test'
+#     ports:
+#       # <Port exposed> : <MySQL Port running inside container>
+#       - '3306:3306'
+#     expose:
+#       - '3306'
+#     volumes:
+#       - /opt/container-volumes.dir/mysql.dir:/var/lib/mysql
